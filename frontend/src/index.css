@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+@theme {
+  /* Modern Glass & Bento Theme */
+  --color-primary: #6366f1; /* Indigo */
+  --color-primary-dark: #4f46e5;
+  --color-primary-light: #e0e7ff;
+  --color-accent: #f43f5e; /* Rose */
+  --color-accent-dark: #e11d48;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  
+  --color-ink: #0f172a; /* Slate 900 */
+  --color-muted: #64748b; /* Slate 500 */
+  --color-line: #e2e8f0; /* Slate 200 */
+  --color-surface: #ffffff;
+  --color-canvas: #f8fafc; /* Slate 50 */
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Soft Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-card: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-glow: 0 0 15px 0 rgba(99, 102, 241, 0.3);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  @apply bg-canvas text-ink font-sans;
+}
+
+/* ---------- Cards / Surfaces ---------- */
+.card {
+  @apply bg-surface border border-line transition-all duration-300;
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+}
+.card-hover:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+  border-color: #cbd5e1;
+}
+.glass {
+  @apply bg-white/80 backdrop-blur-md border border-white/20;
+  box-shadow: var(--shadow-card);
+  border-radius: 16px;
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold px-6 py-2.5 transition-all duration-300;
+  border-radius: 9999px; /* Pill shape */
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+  @apply bg-primary-dark;
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-accent {
+  @apply inline-flex items-center justify-center gap-2 bg-accent text-white font-semibold px-6 py-2.5 transition-all duration-300;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-sm);
+}
+.btn-accent:hover {
+  @apply bg-accent-dark;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 bg-white text-ink font-semibold px-6 py-2.5 border border-line transition-all duration-300;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover {
+  @apply bg-slate-50 border-slate-300;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 text-muted hover:text-ink hover:bg-slate-100 font-semibold px-4 py-2 transition-all duration-200;
+  border-radius: 8px;
+}
+
+/* ---------- Inputs ---------- */
+.input-base {
+  @apply w-full bg-slate-50 border border-line text-ink font-medium placeholder-slate-400 transition-all duration-300 outline-none px-4 py-2.5;
+  border-radius: 12px;
+}
+.input-base:hover {
+  @apply border-slate-300 bg-white;
+}
+.input-base:focus {
+  @apply border-primary bg-white;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 text-xs font-bold tracking-wide border;
+  border-radius: 9999px;
+}
+.badge-success { @apply bg-emerald-50 text-emerald-700 border-emerald-200; }
+.badge-warning { @apply bg-amber-50 text-amber-700 border-amber-200; }
+.badge-error { @apply bg-rose-50 text-rose-700 border-rose-200; }
+.badge-info { @apply bg-indigo-50 text-indigo-700 border-indigo-200; }
+.badge-accent { @apply bg-rose-50 text-rose-700 border-rose-200; }
+
+/* ---------- Rating pill ---------- */
+.rating-pill {
+  @apply inline-flex items-center gap-1 bg-amber-500 text-white text-xs font-bold px-2 py-1;
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Price typography ---------- */
+.price-text {
+  @apply text-ink font-bold;
+}
+.price-old {
+  @apply text-muted line-through text-sm font-medium;
+}
+.price-off {
+  @apply text-emerald-600 font-bold text-sm;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fade-in-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in { animation: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #f1f5f9 25%, #f8fafc 50%, #f1f5f9 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 8px;
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-slide-down { animation: slide-down 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+/* ---------- Stagger helpers ---------- */
+.stagger > * { opacity: 0; animation: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger > *:nth-child(8) { animation-delay: 0.40s; }
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ---------- Utility ---------- */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
